@@ -12,8 +12,8 @@ let bodyParser = require('body-parser');
 
 let app = express();
 
-let privateKey  = fs.readFileSync('/study/cert/213993650550770.pem', 'utf8');
-let certificate = fs.readFileSync('/study/cert/213993650550770.key', 'utf8');
+let privateKey  = fs.readFileSync('/study/cert/213993650550770.key', 'utf8');
+let certificate = fs.readFileSync('/study/cert/213993650550770.pem', 'utf8');
 let credentials = {key: privateKey, cert: certificate};
 
 let httpServer = http.createServer(app);
