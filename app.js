@@ -9,6 +9,22 @@ let bodyParser = require('body-parser');
 
 let app = express();
 
+let privateKey  = fs.readFileSync('/path/to/private.pem', 'utf8');
+let certificate = fs.readFileSync('/path/to/file.crt', 'utf8');
+let credentials = {key: privateKey, cert: certificate};
+
+let httpServer = http.createServer(app);
+let httpsServer = https.createServer(credentials, app);
+let PORT = 443;
+let SSLPORT = 443;
+
+/*httpServer.listen(PORT, function() {
+    console.log('HTTP Server is running on: http://localhost:%s', PORT);
+});*/
+httpsServer.listen(SSLPORT, function() {
+    console.log('HTTPS Server is running on: https://localhost:%s', SSLPORT);
+});
+
 
 
 // catch 404 and forward to error handler
@@ -35,4 +51,4 @@ app.get('/', function (req,res) {
 });
 
 
-app.listen(443);
+
